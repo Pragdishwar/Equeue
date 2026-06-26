@@ -76,7 +76,7 @@ CREATE TABLE tokens (
     priority token_priority NOT NULL DEFAULT 'normal',
     is_walkin BOOLEAN NOT NULL DEFAULT FALSE,
     qr_code TEXT,
-    estimated_wait_min INTEGER NOT NULL DEFAULT 0,
+    estimated_wait_minutes INTEGER NOT NULL DEFAULT 0,
     checked_in_at TIMESTAMPTZ,
     called_at TIMESTAMPTZ,
     served_at TIMESTAMPTZ,
