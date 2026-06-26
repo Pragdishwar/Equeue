@@ -47,7 +47,7 @@ CREATE TABLE services (
     branch_id UUID NOT NULL REFERENCES branches(id) ON DELETE CASCADE,
     name TEXT NOT NULL,
     description TEXT,
-    avg_service_time_min INTEGER NOT NULL DEFAULT 10,
+    avg_service_time INTEGER NOT NULL DEFAULT 10,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -170,7 +170,7 @@ RETURNS INTEGER AS $$
 DECLARE
     v_avg_time INTEGER;
 BEGIN
-    SELECT avg_service_time_min INTO v_avg_time
+    SELECT avg_service_time INTO v_avg_time
     FROM services WHERE id = p_service_id;
     
     IF v_avg_time IS NULL THEN
@@ -398,7 +398,7 @@ INSERT INTO branches (id, name, address, contact, is_active) VALUES
     ('d4e5f6a7-b8c9-0123-defa-234567890123', 'Metro Service Center', '101 Auto Lane, Industrial Area', '+91 98765 43213', TRUE);
 
 -- Insert demo services
-INSERT INTO services (id, branch_id, name, description, avg_service_time_min, is_active) VALUES
+INSERT INTO services (id, branch_id, name, description, avg_service_time, is_active) VALUES
     -- Hospital services
     (gen_random_uuid(), 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'General Consultation', 'General physician consultation', 15, TRUE),
     (gen_random_uuid(), 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', 'Lab Tests', 'Blood tests and diagnostics', 10, TRUE),
